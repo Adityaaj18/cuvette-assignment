@@ -5,18 +5,22 @@ import Chart from 'chart.js/auto'
 import Progress from './Progress'
 
 const Skilltest = () => {
-   const [rank, setRank] = useState('12,433')
+   const [rank, setRank] = useState(12433)
    const [percents, setPercents] = useState(35)
    const [answer, setAnswer] = useState(5)
+
    const [show, setShow] = useState(false)
+
+   const [rank1, setRank1] = useState(12433)
+   const [percent1, setPercents1] = useState(35)
+   const [answer1, setAnswer1] = useState(5)
 
    const handleClose = () => setShow(false)
    const handleShow = () => setShow(true)
-
-   const handleSubmit = () => {}
-   const values = []
-
-   console.log(values)
+   // const handleRankChange = (e) => {
+   //    console.log(e.target.value)
+   //    setRank(e.target.value)
+   // }
 
    const data = {
       labels: ['0%', '20%', '40%', '60%', '80%', '100%'],
@@ -74,6 +78,7 @@ const Skilltest = () => {
                      <Modal.Title>Update Skill Scores</Modal.Title>
                      <img src={require('../img/html.png')} alt="" />
                   </Modal.Header>
+
                   <Modal.Body>
                      <div
                         style={{
@@ -176,7 +181,17 @@ const Skilltest = () => {
                      <Button onClick={handleClose} id="cancel">
                         Cancel
                      </Button>
-                     <Button variant="primary" onClick={handleClose} id="save">
+                     <Button
+                        type="submit"
+                        variant="primary"
+                        onClick={() => {
+                           setRank1(rank)
+                           setPercents1(percents)
+                           setAnswer1(answer)
+                           handleClose()
+                        }}
+                        id="save"
+                     >
                         Save
                      </Button>
                   </Modal.Footer>
@@ -202,7 +217,7 @@ const Skilltest = () => {
                         />
                      </div>
                      <div>
-                        <h4 style={{ marginBottom: '5px' }}>{rank}</h4>
+                        <h4 style={{ marginBottom: '5px' }}>{rank1}</h4>
                         <p style={{ fontSize: '12px', color: '#9EAAB7' }}>
                            YOUR RANK
                         </p>
@@ -227,7 +242,7 @@ const Skilltest = () => {
                         />
                      </div>
                      <div>
-                        <h4 style={{ marginBottom: '5px' }}>{percents} %</h4>
+                        <h4 style={{ marginBottom: '5px' }}>{percent1} %</h4>
                         <p style={{ fontSize: '12px', color: '#9EAAB7' }}>
                            PERCENTILE
                         </p>
@@ -249,7 +264,7 @@ const Skilltest = () => {
                         />
                      </div>
                      <div>
-                        <h4 style={{ marginBottom: '5px' }}>{answer} / 15</h4>
+                        <h4 style={{ marginBottom: '5px' }}>{answer1} / 15</h4>
                         <p style={{ fontSize: '12px', color: '#9EAAB7' }}>
                            CORRECT ANSWERS
                         </p>
@@ -285,7 +300,7 @@ const Skilltest = () => {
             <div className="question-analysis">
                <p style={{ fontWeight: '500' }}>Question Analysis</p>
                <p>
-                  You scored {answer} questions out of 15. However it still
+                  You scored {answer1} questions out of 15. However it still
                   needs some improvements.
                </p>
                <Doughnut
@@ -293,7 +308,7 @@ const Skilltest = () => {
                      datasets: [
                         {
                            label: 'My First Dataset',
-                           data: [answer, 15 - answer],
+                           data: [answer1, 15 - answer1],
                            backgroundColor: [
                               'rgb(67, 138, 246)',
                               'rgb(205, 225, 255)'
